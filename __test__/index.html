@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="el"></div>
+
+		<script src="https://unpkg.com/lunar-icons"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/11.0.0/2/twemoji.min.js" charset="utf-8"></script>
+		<script src="/eyejs/" charset="utf-8"></script>
+		<script src="/static/emojify.js"></script>
+		<script>
+			const E = new Emojify()
+
+			const element = E.createElement()
+
+			document.querySelector(".el").appendChild(element)
+
+			twemoji.parse(document.body)
+		</script>
+		<script>
+			// eye.checkout()
+		</script>
+	</body>
+</html>

@@ -98,6 +98,7 @@ class Emojify {
     const html = parser.parseFromString(model, "text/html");
 
     const out = this.gen(html.body);
+    this.addEventListeners(out);
     return out;
   }
   createList() {
@@ -208,6 +209,21 @@ class Emojify {
       }
     };
   }
+  addEventListeners(el) {
+    const search = el.querySelector(".search");
+
+    const callback = e => {
+      const regex = new RegExp(e.currentTarget.value, "i");
+      if (e.currentTarget.value == "") {
+        el = this.gen(el);
+      } else {
+        el = this.gen(el, regex);
+      }
+    };
+    search.addEventListener("input", callback);
+    search.addEventListener("keydown", callback);
+    search.addEventListener("change", callback);
+  }
   gen(body, regex = null) {
     const list = this.list;
 
@@ -215,6 +231,7 @@ class Emojify {
     const values = Object.values(list);
 
     const emojis = body.querySelector(".emojis");
+    emojis.innerHTML = "";
     for (let i = 0; i < keys.length; i++) {
       const h3 = document.createElement("h3");
       h3.appendChild(document.createTextNode(keys[i]));
@@ -226,13 +243,14 @@ class Emojify {
       if (regex == null) {
         emojis.innerHTML += em.join(""); // not recommended but easy
       } else {
-        for (let a = 0; i < names.length; i++) {
+        for (let a = 0; a < names.length; a++) {
           if (regex.test(names[a])) {
             emojis.innerHTML += em[a];
           }
         }
       }
     }
+    twemoji.parse(body);
     return body;
   }
 }

@@ -49,6 +49,7 @@ var Emojify = (function() {
         var html = parser.parseFromString(model, "text/html");
 
         var out = this.gen(html.body);
+        this.addEventListeners(out);
         return out;
       }
     },
@@ -164,6 +165,26 @@ var Emojify = (function() {
       }
     },
     {
+      key: "addEventListeners",
+      value: function addEventListeners(el) {
+        var _this = this;
+
+        var search = el.querySelector(".search");
+
+        var callback = function callback(e) {
+          var regex = new RegExp(e.currentTarget.value, "i");
+          if (e.currentTarget.value == "") {
+            el = _this.gen(el);
+          } else {
+            el = _this.gen(el, regex);
+          }
+        };
+        search.addEventListener("input", callback);
+        search.addEventListener("keydown", callback);
+        search.addEventListener("change", callback);
+      }
+    },
+    {
       key: "gen",
       value: function gen(body) {
         var regex =
@@ -177,6 +198,7 @@ var Emojify = (function() {
         var values = Object.values(list);
 
         var emojis = body.querySelector(".emojis");
+        emojis.innerHTML = "";
         for (var i = 0; i < keys.length; i++) {
           var h3 = document.createElement("h3");
           h3.appendChild(document.createTextNode(keys[i]));
@@ -188,13 +210,14 @@ var Emojify = (function() {
           if (regex == null) {
             emojis.innerHTML += em.join(""); // not recommended but easy
           } else {
-            for (var a = 0; i < names.length; i++) {
+            for (var a = 0; a < names.length; a++) {
               if (regex.test(names[a])) {
                 emojis.innerHTML += em[a];
               }
             }
           }
         }
+        twemoji.parse(body);
         return body;
       }
     }

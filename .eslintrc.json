@@ -23,6 +23,7 @@
         "no-console": "off",
         "no-unused-vars": "off",
 		"no-cond-assign": "off",
-		"no-inner-declaration": "off"
+		"no-inner-declaration": "off",
+		"no-undef": "off"
     }
 }

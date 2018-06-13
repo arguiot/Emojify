@@ -1,6 +1,6 @@
 {
-    "name": "emoji.fy",
-    "version": "1.0.0",
+    "name": "emojify-picker",
+    "version": "0.0.0",
     "description": "A beautiful emoji picker",
     "main": "dist/emojify.min.js",
     "scripts": {

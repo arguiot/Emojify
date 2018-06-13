@@ -20,15 +20,7 @@
             "error",
             "always"
         ],
-        "no-console": [
-            "error",
-            {
-                "allow": [
-                    "warn",
-                    "error"
-                ]
-            }
-        ],
+        "no-console": "off",
         "no-unused-vars": "off",
 		"no-cond-assign": "off",
 		"no-inner-declaration": "off"

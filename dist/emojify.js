@@ -42,13 +42,14 @@ var Emojify = (function() {
       key: "createElement",
       value: function createElement() {
         var model =
-          "\n\t\t\t<div class=\"container\">\n\t\t\t  <input type=\"text\" class=\"search\" placeholder=\"Find your Emoji\">\n\t\t\t  <lunar-icon icon=\"search\"></lunar-icon>\n\t\t\t  <div class=\"emojis\"></div>\n\t\t\t  <div class=\"menu\">\n\t\t\t    <div class=\"people\">\uD83D\uDE00</div>\n\t\t\t  </div>\n\t\t\t</div>\n\t\t\t<style>\n\t\t\t.container {\n\t\t\t  width: 500px;\n\t\t\t  height: 300px;\n\t\t\t  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);\n\t\t\t  border-radius: 5px;\n\t\t\t  background: white;\n\t\t\t}\n\t\t\t.container .search {\n\t\t\t  width: 80%;\n\t\t\t  height: 50px;\n\t\t\t  margin: 20px;\n\t\t\t  border: none;\n\t\t\t  border-radius: 5px;\n\t\t\t  background: rgba(0, 0, 0, 0.1);\n\t\t\t  box-sizing: border-box;\n\t\t\t  padding: 10px;\n\t\t\t}\n\t\t\t.container lunar-icon {\n\t\t\t  position: relative;\n\t\t\t  left: -60px;\n\t\t\t  font-size: 20px;\n\t\t\t  top: 4px;\n\t\t\t}\n\t\t\t.container .emojis {\n\t\t\t  width: 90%;\n\t\t\t  height: 70%;\n\t\t\t  box-sizing: border-box;\n\t\t\t  padding: 20px;\n\t\t\t  padding-top: 0;\n\t\t\t  margin: 0 auto;\n\t\t\t  overflow: auto;\n\t\t\t}\n\t\t\t.container .emojis .emoji {\n\t\t\t  display: inline;\n\t\t\t  width: 20px;\n\t\t\t  padding: 5px;\n\t\t\t  margin: 5px;\n\t\t\t  border-radius: 5px;\n\t\t\t  cursor: pointer;\n\t\t\t}\n\t\t\t.container .emojis .emoji:hover {\n\t\t\t  background: rgba(0, 0, 0, 0.1);\n\t\t\t}\n\t\t\t.container .emojis::-webkit-scrollbar {\n\t\t\t  width: 1em;\n\t\t\t}\n\t\t\t.container .menu {\n\t\t\t  width: 50px;\n\t\t\t  display: flex;\n\t\t\t  justify-content: center;\n\t\t\t  flex-direction: column;\n\t\t\t  align-items: center;\n\t\t\t  transform: translate(435px, -300px);\n\t\t\t  box-sizing: border-box;\n\t\t\t  padding: 10px;\n\t\t\t  height: 100%;\n\t\t\t}\n\t\t\t.container .menu .emoji {\n\t\t\t  display: inline;\n\t\t\t  width: 30px;\n\t\t\t  padding: 5px;\n\t\t\t  margin: 5px;\n\t\t\t  border-radius: 5px;\n\t\t\t  cursor: pointer;\n\t\t\t}\n\t\t\t.container .menu .emoji:hover {\n\t\t\t  background: rgba(0, 0, 0, 0.1);\n\t\t\t}\n\t\t\t</style>\n\t\t\t";
+          "\n\t\t\t<div class=\"container\">\n\t\t\t  <input type=\"text\" class=\"search\" placeholder=\"Find your Emoji\">\n\t\t\t  <lunar-icon icon=\"search\"></lunar-icon>\n\t\t\t  <div class=\"emojis\"></div>\n\t\t\t  <div class=\"menu\">\n\t\t\t    <div class=\"people\">\uD83D\uDE00</div>\n\t\t\t  </div>\n\t\t\t</div>\n\t\t\t<style>\n\t\t\t.container {\n\t\t\t  width: 500px;\n\t\t\t  height: 300px;\n\t\t\t  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);\n\t\t\t  border-radius: 5px;\n\t\t\t  background: white;\n\t\t\t}\n\t\t\t.container .search {\n\t\t\t  width: 80%;\n\t\t\t  height: 50px;\n\t\t\t  margin: 20px;\n\t\t\t  border: none;\n\t\t\t  border-radius: 5px;\n\t\t\t  background: rgba(0, 0, 0, 0.1);\n\t\t\t  box-sizing: border-box;\n\t\t\t  padding: 10px;\n\t\t\t}\n\t\t\t.container lunar-icon {\n\t\t\t  position: relative;\n\t\t\t  left: -60px;\n\t\t\t  font-size: 20px;\n\t\t\t  top: 4px;\n\t\t\t}\n\t\t\t.container .emojis {\n\t\t\t  width: 90%;\n\t\t\t  height: 70%;\n\t\t\t  box-sizing: border-box;\n\t\t\t  padding: 20px;\n\t\t\t  padding-top: 0;\n\t\t\t  margin: 0 auto;\n\t\t\t  overflow: auto;\n\t\t\t}\n\t\t\t.container .emojis .emoji {\n\t\t\t  display: inline;\n\t\t\t  width: 20px;\n\t\t\t  padding: 5px;\n\t\t\t  margin: 5px;\n\t\t\t  border-radius: 5px;\n\t\t\t  cursor: pointer;\n\t\t\t  box-sizing: content-box;\n\t\t\t}\n\t\t\t.container .emojis .emoji:hover {\n\t\t\t  background: rgba(0, 0, 0, 0.1);\n\t\t\t}\n\t\t\t.container .emojis::-webkit-scrollbar {\n\t\t\t  width: 1em;\n\t\t\t}\n\t\t\t.container .menu {\n\t\t\t  width: 50px;\n\t\t\t  display: flex;\n\t\t\t  justify-content: center;\n\t\t\t  flex-direction: column;\n\t\t\t  align-items: center;\n\t\t\t  transform: translate(435px, -300px);\n\t\t\t  box-sizing: border-box;\n\t\t\t  padding: 10px;\n\t\t\t  height: 100%;\n\t\t\t}\n\t\t\t.container .menu .emoji {\n\t\t\t  display: inline;\n\t\t\t  width: 30px;\n\t\t\t  padding: 5px;\n\t\t\t  margin: 5px;\n\t\t\t  border-radius: 5px;\n\t\t\t  cursor: pointer;\n\t\t\t  box-sizing: content-box;\n\t\t\t}\n\t\t\t.container .menu .emoji:hover {\n\t\t\t  background: rgba(0, 0, 0, 0.1);\n\t\t\t}\n\t\t\t</style>\n\t\t\t";
 
         var parser = new DOMParser();
 
         var html = parser.parseFromString(model, "text/html");
 
-        return html.body;
+        var out = this.gen(html.body);
+        return out;
       }
     },
     {
@@ -160,6 +161,41 @@ var Emojify = (function() {
             "grumpy-pouting-cat": "😾"
           }
         };
+      }
+    },
+    {
+      key: "gen",
+      value: function gen(body) {
+        var regex =
+          arguments.length > 1 && arguments[1] !== undefined
+            ? arguments[1]
+            : null;
+
+        var list = this.list;
+
+        var keys = Object.keys(list);
+        var values = Object.values(list);
+
+        var emojis = body.querySelector(".emojis");
+        for (var i = 0; i < keys.length; i++) {
+          var h3 = document.createElement("h3");
+          h3.appendChild(document.createTextNode(keys[i]));
+
+          emojis.appendChild(h3);
+          var v = values[i];
+          var names = Object.keys(v);
+          var em = Object.values(v);
+          if (regex == null) {
+            emojis.innerHTML += em.join(""); // not recommended but easy
+          } else {
+            for (var a = 0; i < names.length; i++) {
+              if (regex.test(names[a])) {
+                emojis.innerHTML += em[a];
+              }
+            }
+          }
+        }
+        return body;
       }
     }
   ]);

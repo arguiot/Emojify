@@ -47,6 +47,7 @@ const model = `
   margin: 5px;
   border-radius: 5px;
   cursor: pointer;
+  box-sizing: content-box;
 }
 .container .emojis .emoji:hover {
   background: rgba(0, 0, 0, 0.1);
@@ -72,6 +73,7 @@ const model = `
   margin: 5px;
   border-radius: 5px;
   cursor: pointer;
+  box-sizing: content-box;
 }
 .container .menu .emoji:hover {
   background: rgba(0, 0, 0, 0.1);

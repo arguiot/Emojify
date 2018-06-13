@@ -5,5 +5,7 @@ createElement() {
 
 		const html = parser.parseFromString(model, "text/html")
 
-		return html.body
+		const out = this.gen(html.body)
+		this.addEventListeners(out)
+		return out
 }

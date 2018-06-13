@@ -1,0 +1,5 @@
+createList() {
+	return {
+		//= ../emojis/
+	}
+}

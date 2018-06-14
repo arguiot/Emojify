@@ -1,7 +1,7 @@
 const model = `
 <div class="container">
   <input type="text" class="search" placeholder="Find your Emoji">
-  <lunar-icon icon="search"></lunar-icon>
+  <lunar-icon icon="search">🔍</lunar-icon>
   <div class="emojis"></div>
   <div class="menu">
     <div class="people">😀</div>

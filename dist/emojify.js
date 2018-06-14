@@ -294,7 +294,7 @@ var Emojify = (function() {
           emoji.addEventListener("click", function(ev) {
             var unicode = ev.currentTarget.alt;
             var pos = _this2.input.selectionStart;
-            console.log(pos);
+
             _this2.input.value = _this2.input.value.splice(pos, 0, unicode);
           });
         });

@@ -309,7 +309,7 @@ class Emojify {
       emoji.addEventListener("click", ev => {
         const unicode = ev.currentTarget.alt;
         const pos = this.input.selectionStart;
-        console.log(pos);
+
         this.input.value = this.input.value.splice(pos, 0, unicode);
       });
     });

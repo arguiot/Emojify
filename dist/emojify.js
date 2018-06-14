@@ -17,6 +17,17 @@ var _createClass = (function() {
   };
 })();
 
+function _toConsumableArray(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+    return arr2;
+  } else {
+    return Array.from(arr);
+  }
+}
+
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
@@ -182,6 +193,22 @@ var Emojify = (function() {
         search.addEventListener("input", callback);
         search.addEventListener("keydown", callback);
         search.addEventListener("change", callback);
+
+        var menu = el.querySelectorAll(".menu > div");
+        menu.forEach(function(e) {
+          e.addEventListener("click", function(ev) {
+            var target = ev.currentTarget;
+            var index = []
+              .concat(_toConsumableArray(target.parentElement.children))
+              .indexOf(target);
+
+            var titles = el.querySelectorAll(".emojis > h3");
+            var emojis = el.querySelector(".emojis");
+            var topPos = titles[index].offsetTop - emojis.offsetTop;
+
+            emojis.scrollTop = topPos;
+          });
+        });
       }
     },
     {

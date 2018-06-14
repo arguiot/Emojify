@@ -28,5 +28,19 @@ gen(body, regex=null) {
 		throw "Emojify requires Twemoji to work. Please contact the developer or check the docs for more informations."
 	}
 	twemoji.parse(body)
+
+	// Emojis events
+
+	const emojiList = emojis.querySelectorAll(".emoji")
+	emojiList.forEach(emoji => {
+		emoji.addEventListener("click", ev => {
+			const unicode = ev.currentTarget.alt
+			const pos = this.input.selectionStart
+
+			this.input.value = this.input.value.splice(pos, 0, unicode)
+		})
+	})
+
+
 	return body
 }

@@ -42,10 +42,41 @@ function _classCallCheck(instance, Constructor) {
 
 ******************************************************/
 var Emojify = (function() {
-  function Emojify() {
+  function Emojify(input) {
+    var list =
+      arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
     _classCallCheck(this, Emojify);
 
-    this.list = this.createList();
+    if (list == null) {
+      this.list = this.createList();
+    } else {
+      this.list = list;
+    }
+    this.input = input;
+
+    // Polyfill
+    if (!String.prototype.splice) {
+      /**
+       * {JSDoc}
+       *
+       * The splice() method changes the content of a string by removing a range of
+       * characters and/or adding new characters.
+       *
+       * @this {String}
+       * @param {number} start Index at which to start changing the string.
+       * @param {number} delCount An integer indicating the number of old chars to remove.
+       * @param {string} newSubStr The String that is spliced in.
+       * @return {string} A new string with the spliced substring.
+       */
+      String.prototype.splice = function(start, delCount, newSubStr) {
+        return (
+          this.slice(0, start) +
+          newSubStr +
+          this.slice(start + Math.abs(delCount))
+        );
+      };
+    }
   }
 
   _createClass(Emojify, [
@@ -53,14 +84,19 @@ var Emojify = (function() {
       key: "createElement",
       value: function createElement() {
         var model =
-          "\n\t\t\t<div class=\"container\">\n\t\t\t  <input type=\"text\" class=\"search\" placeholder=\"Find your Emoji\">\n\t\t\t  <lunar-icon icon=\"search\"></lunar-icon>\n\t\t\t  <div class=\"emojis\"></div>\n\t\t\t  <div class=\"menu\">\n\t\t\t    <div class=\"people\">\uD83D\uDE00</div>\n\t\t\t  </div>\n\t\t\t</div>\n\t\t\t<style>\n\t\t\t.container {\n\t\t\t  width: 500px;\n\t\t\t  height: 300px;\n\t\t\t  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);\n\t\t\t  border-radius: 5px;\n\t\t\t  background: white;\n\t\t\t}\n\t\t\t.container .search {\n\t\t\t  width: 80%;\n\t\t\t  height: 50px;\n\t\t\t  margin: 20px;\n\t\t\t  border: none;\n\t\t\t  border-radius: 5px;\n\t\t\t  background: rgba(0, 0, 0, 0.1);\n\t\t\t  box-sizing: border-box;\n\t\t\t  padding: 10px;\n\t\t\t}\n\t\t\t.container lunar-icon {\n\t\t\t  position: relative;\n\t\t\t  left: -60px;\n\t\t\t  font-size: 20px;\n\t\t\t  top: 4px;\n\t\t\t}\n\t\t\t.container .emojis {\n\t\t\t  width: 90%;\n\t\t\t  height: 70%;\n\t\t\t  box-sizing: border-box;\n\t\t\t  padding: 20px;\n\t\t\t  padding-top: 0;\n\t\t\t  margin: 0 auto;\n\t\t\t  overflow: auto;\n\t\t\t}\n\t\t\t.container .emojis .emoji {\n\t\t\t  display: inline;\n\t\t\t  width: 20px;\n\t\t\t  padding: 5px;\n\t\t\t  margin: 5px;\n\t\t\t  border-radius: 5px;\n\t\t\t  cursor: pointer;\n\t\t\t  box-sizing: content-box;\n\t\t\t}\n\t\t\t.container .emojis .emoji:hover {\n\t\t\t  background: rgba(0, 0, 0, 0.1);\n\t\t\t}\n\t\t\t.container .emojis::-webkit-scrollbar {\n\t\t\t  width: 1em;\n\t\t\t}\n\t\t\t.container .menu {\n\t\t\t  width: 50px;\n\t\t\t  display: flex;\n\t\t\t  justify-content: center;\n\t\t\t  flex-direction: column;\n\t\t\t  align-items: center;\n\t\t\t  transform: translate(435px, -300px);\n\t\t\t  box-sizing: border-box;\n\t\t\t  padding: 10px;\n\t\t\t  height: 100%;\n\t\t\t}\n\t\t\t.container .menu .emoji {\n\t\t\t  display: inline;\n\t\t\t  width: 30px;\n\t\t\t  padding: 5px;\n\t\t\t  margin: 5px;\n\t\t\t  border-radius: 5px;\n\t\t\t  cursor: pointer;\n\t\t\t  box-sizing: content-box;\n\t\t\t}\n\t\t\t.container .menu .emoji:hover {\n\t\t\t  background: rgba(0, 0, 0, 0.1);\n\t\t\t}\n\t\t\t</style>\n\t\t\t";
+          "\n\t\t<div class=\"container\">\n\t\t  <input type=\"text\" class=\"search\" placeholder=\"Find your Emoji\">\n\t\t  <lunar-icon icon=\"search\"></lunar-icon>\n\t\t  <div class=\"emojis\"></div>\n\t\t  <div class=\"menu\">\n\t\t    <div class=\"people\">\uD83D\uDE00</div>\n\t\t  </div>\n\t\t</div>\n\t\t<style>\n\t\t.container {\n\t\t  width: 500px;\n\t\t  height: 300px;\n\t\t  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);\n\t\t  border-radius: 5px;\n\t\t  background: white;\n\t\t}\n\t\t.container .search {\n\t\t  width: 80%;\n\t\t  height: 50px;\n\t\t  margin: 20px;\n\t\t  border: none;\n\t\t  border-radius: 5px;\n\t\t  background: rgba(0, 0, 0, 0.1);\n\t\t  box-sizing: border-box;\n\t\t  padding: 10px;\n\t\t}\n\t\t.container lunar-icon {\n\t\t  position: relative;\n\t\t  left: -60px;\n\t\t  font-size: 20px;\n\t\t  top: 4px;\n\t\t}\n\t\t.container .emojis {\n\t\t  width: 90%;\n\t\t  height: 70%;\n\t\t  box-sizing: border-box;\n\t\t  padding: 20px;\n\t\t  padding-top: 0;\n\t\t  margin: 0 auto;\n\t\t  overflow: auto;\n\t\t}\n\t\t.container .emojis .emoji {\n\t\t  display: inline;\n\t\t  width: 20px;\n\t\t  padding: 5px;\n\t\t  margin: 5px;\n\t\t  border-radius: 5px;\n\t\t  cursor: pointer;\n\t\t  box-sizing: content-box;\n\t\t}\n\t\t.container .emojis .emoji:hover {\n\t\t  background: rgba(0, 0, 0, 0.1);\n\t\t}\n\t\t.container .emojis::-webkit-scrollbar {\n\t\t  width: 1em;\n\t\t}\n\t\t.container .menu {\n\t\t  width: 50px;\n\t\t  display: flex;\n\t\t  justify-content: center;\n\t\t  flex-direction: column;\n\t\t  align-items: center;\n\t\t  transform: translate(435px, -300px);\n\t\t  box-sizing: border-box;\n\t\t  padding: 10px;\n\t\t  height: 100%;\n\t\t}\n\t\t.container .menu .emoji {\n\t\t  display: inline;\n\t\t  width: 30px;\n\t\t  padding: 5px;\n\t\t  margin: 5px;\n\t\t  border-radius: 5px;\n\t\t  cursor: pointer;\n\t\t  box-sizing: content-box;\n\t\t}\n\t\t.container .menu .emoji:hover {\n\t\t  background: rgba(0, 0, 0, 0.1);\n\t\t}\n\t\t</style>\n\t\t";
 
         var parser = new DOMParser();
 
         var html = parser.parseFromString(model, "text/html");
 
-        var out = this.gen(html.body);
-        this.addEventListeners(out);
+        var body = html.body.querySelector(".container");
+        var style = html.body.querySelector("style");
+
+        var out = this.gen(body);
+        this.addEventListeners(body);
+
+        out.appendChild(style);
         return out;
       }
     },
@@ -191,10 +227,12 @@ var Emojify = (function() {
           }
         };
         search.addEventListener("input", callback);
-        search.addEventListener("keydown", callback);
-        search.addEventListener("change", callback);
 
         var menu = el.querySelectorAll(".menu > div");
+
+        var titles = el.querySelectorAll(".emojis > h3");
+        var emojis = el.querySelector(".emojis");
+
         menu.forEach(function(e) {
           e.addEventListener("click", function(ev) {
             var target = ev.currentTarget;
@@ -202,8 +240,6 @@ var Emojify = (function() {
               .concat(_toConsumableArray(target.parentElement.children))
               .indexOf(target);
 
-            var titles = el.querySelectorAll(".emojis > h3");
-            var emojis = el.querySelector(".emojis");
             var topPos = titles[index].offsetTop - emojis.offsetTop;
 
             emojis.scrollTop = topPos;
@@ -214,6 +250,8 @@ var Emojify = (function() {
     {
       key: "gen",
       value: function gen(body) {
+        var _this2 = this;
+
         var regex =
           arguments.length > 1 && arguments[1] !== undefined
             ? arguments[1]
@@ -244,7 +282,23 @@ var Emojify = (function() {
             }
           }
         }
+        if (!twemoji) {
+          throw "Emojify requires Twemoji to work. Please contact the developer or check the docs for more informations.";
+        }
         twemoji.parse(body);
+
+        // Emojis events
+
+        var emojiList = emojis.querySelectorAll(".emoji");
+        emojiList.forEach(function(emoji) {
+          emoji.addEventListener("click", function(ev) {
+            var unicode = ev.currentTarget.alt;
+            var pos = _this2.input.selectionStart;
+            console.log(pos);
+            _this2.input.value = _this2.input.value.splice(pos, 0, unicode);
+          });
+        });
+
         return body;
       }
     }

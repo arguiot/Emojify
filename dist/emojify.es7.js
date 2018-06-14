@@ -6,99 +6,132 @@
 
 ******************************************************/
 class Emojify {
-  constructor() {
-    this.list = this.createList();
+  constructor(input, list = null) {
+    if (list == null) {
+      this.list = this.createList();
+    } else {
+      this.list = list;
+    }
+    this.input = input;
+
+    // Polyfill
+    if (!String.prototype.splice) {
+      /**
+       * {JSDoc}
+       *
+       * The splice() method changes the content of a string by removing a range of
+       * characters and/or adding new characters.
+       *
+       * @this {String}
+       * @param {number} start Index at which to start changing the string.
+       * @param {number} delCount An integer indicating the number of old chars to remove.
+       * @param {string} newSubStr The String that is spliced in.
+       * @return {string} A new string with the spliced substring.
+       */
+      String.prototype.splice = function(start, delCount, newSubStr) {
+        return (
+          this.slice(0, start) +
+          newSubStr +
+          this.slice(start + Math.abs(delCount))
+        );
+      };
+    }
   }
   createElement() {
     const model = `
-			<div class="container">
-			  <input type="text" class="search" placeholder="Find your Emoji">
-			  <lunar-icon icon="search"></lunar-icon>
-			  <div class="emojis"></div>
-			  <div class="menu">
-			    <div class="people">😀</div>
-			  </div>
-			</div>
-			<style>
-			.container {
-			  width: 500px;
-			  height: 300px;
-			  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
-			  border-radius: 5px;
-			  background: white;
-			}
-			.container .search {
-			  width: 80%;
-			  height: 50px;
-			  margin: 20px;
-			  border: none;
-			  border-radius: 5px;
-			  background: rgba(0, 0, 0, 0.1);
-			  box-sizing: border-box;
-			  padding: 10px;
-			}
-			.container lunar-icon {
-			  position: relative;
-			  left: -60px;
-			  font-size: 20px;
-			  top: 4px;
-			}
-			.container .emojis {
-			  width: 90%;
-			  height: 70%;
-			  box-sizing: border-box;
-			  padding: 20px;
-			  padding-top: 0;
-			  margin: 0 auto;
-			  overflow: auto;
-			}
-			.container .emojis .emoji {
-			  display: inline;
-			  width: 20px;
-			  padding: 5px;
-			  margin: 5px;
-			  border-radius: 5px;
-			  cursor: pointer;
-			  box-sizing: content-box;
-			}
-			.container .emojis .emoji:hover {
-			  background: rgba(0, 0, 0, 0.1);
-			}
-			.container .emojis::-webkit-scrollbar {
-			  width: 1em;
-			}
-			.container .menu {
-			  width: 50px;
-			  display: flex;
-			  justify-content: center;
-			  flex-direction: column;
-			  align-items: center;
-			  transform: translate(435px, -300px);
-			  box-sizing: border-box;
-			  padding: 10px;
-			  height: 100%;
-			}
-			.container .menu .emoji {
-			  display: inline;
-			  width: 30px;
-			  padding: 5px;
-			  margin: 5px;
-			  border-radius: 5px;
-			  cursor: pointer;
-			  box-sizing: content-box;
-			}
-			.container .menu .emoji:hover {
-			  background: rgba(0, 0, 0, 0.1);
-			}
-			</style>
-			`;
+		<div class="container">
+		  <input type="text" class="search" placeholder="Find your Emoji">
+		  <lunar-icon icon="search"></lunar-icon>
+		  <div class="emojis"></div>
+		  <div class="menu">
+		    <div class="people">😀</div>
+		  </div>
+		</div>
+		<style>
+		.container {
+		  width: 500px;
+		  height: 300px;
+		  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+		  border-radius: 5px;
+		  background: white;
+		}
+		.container .search {
+		  width: 80%;
+		  height: 50px;
+		  margin: 20px;
+		  border: none;
+		  border-radius: 5px;
+		  background: rgba(0, 0, 0, 0.1);
+		  box-sizing: border-box;
+		  padding: 10px;
+		}
+		.container lunar-icon {
+		  position: relative;
+		  left: -60px;
+		  font-size: 20px;
+		  top: 4px;
+		}
+		.container .emojis {
+		  width: 90%;
+		  height: 70%;
+		  box-sizing: border-box;
+		  padding: 20px;
+		  padding-top: 0;
+		  margin: 0 auto;
+		  overflow: auto;
+		}
+		.container .emojis .emoji {
+		  display: inline;
+		  width: 20px;
+		  padding: 5px;
+		  margin: 5px;
+		  border-radius: 5px;
+		  cursor: pointer;
+		  box-sizing: content-box;
+		}
+		.container .emojis .emoji:hover {
+		  background: rgba(0, 0, 0, 0.1);
+		}
+		.container .emojis::-webkit-scrollbar {
+		  width: 1em;
+		}
+		.container .menu {
+		  width: 50px;
+		  display: flex;
+		  justify-content: center;
+		  flex-direction: column;
+		  align-items: center;
+		  transform: translate(435px, -300px);
+		  box-sizing: border-box;
+		  padding: 10px;
+		  height: 100%;
+		}
+		.container .menu .emoji {
+		  display: inline;
+		  width: 30px;
+		  padding: 5px;
+		  margin: 5px;
+		  border-radius: 5px;
+		  cursor: pointer;
+		  box-sizing: content-box;
+		}
+		.container .menu .emoji:hover {
+		  background: rgba(0, 0, 0, 0.1);
+		}
+		</style>
+		`;
 
     const parser = new DOMParser();
 
     const html = parser.parseFromString(model, "text/html");
 
-    const out = this.gen(html.body);
-    this.addEventListeners(out);
+    const body = html.body.querySelector(".container");
+    const style = html.body.querySelector("style");
+
+    const out = this.gen(body);
+    this.addEventListeners(body);
+
+    out.appendChild(style);
     return out;
   }
   createList() {
@@ -221,17 +254,17 @@ class Emojify {
       }
     };
     search.addEventListener("input", callback);
-    search.addEventListener("keydown", callback);
-    search.addEventListener("change", callback);
 
     const menu = el.querySelectorAll(".menu > div");
+
+    const titles = el.querySelectorAll(".emojis > h3");
+    const emojis = el.querySelector(".emojis");
+
     menu.forEach(e => {
       e.addEventListener("click", ev => {
         const target = ev.currentTarget;
         const index = [...target.parentElement.children].indexOf(target);
 
-        const titles = el.querySelectorAll(".emojis > h3");
-        const emojis = el.querySelector(".emojis");
         const topPos = titles[index].offsetTop - emojis.offsetTop;
 
         emojis.scrollTop = topPos;
@@ -264,7 +297,23 @@ class Emojify {
         }
       }
     }
+    if (!twemoji) {
+      throw "Emojify requires Twemoji to work. Please contact the developer or check the docs for more informations.";
+    }
     twemoji.parse(body);
+
+    // Emojis events
+
+    const emojiList = emojis.querySelectorAll(".emoji");
+    emojiList.forEach(emoji => {
+      emoji.addEventListener("click", ev => {
+        const unicode = ev.currentTarget.alt;
+        const pos = this.input.selectionStart;
+        console.log(pos);
+        this.input.value = this.input.value.splice(pos, 0, unicode);
+      });
+    });
+
     return body;
   }
 }

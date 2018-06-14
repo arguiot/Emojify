@@ -41,7 +41,7 @@ class Emojify {
     const model = `
 		<div class="container">
 		  <input type="text" class="search" placeholder="Find your Emoji">
-		  <lunar-icon icon="search">🔍</lunar-icon>
+		  <lunar-icon icon="search"></lunar-icon>
 		  <div class="emojis"></div>
 		  <div class="menu">
 		    <div class="people">😀</div>
@@ -49,14 +49,14 @@ class Emojify {
 		</div>
 		<style>
 		.container {
-		  width: 500px;
+		  width: 300px;
 		  height: 300px;
 		  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
 		  border-radius: 5px;
 		  background: white;
 		}
 		.container .search {
-		  width: 80%;
+		  width: 70%;
 		  height: 50px;
 		  margin: 20px;
 		  border: none;
@@ -67,9 +67,9 @@ class Emojify {
 		}
 		.container lunar-icon {
 		  position: relative;
-		  left: -60px;
+		  left: -20%;
 		  font-size: 20px;
-		  top: 4px;
+		  top: 5px;
 		}
 		.container .emojis {
 		  width: 90%;
@@ -101,7 +101,7 @@ class Emojify {
 		  justify-content: center;
 		  flex-direction: column;
 		  align-items: center;
-		  transform: translate(435px, -300px);
+		  transform: translate(240px, -300px);
 		  box-sizing: border-box;
 		  padding: 10px;
 		  height: 100%;
@@ -271,8 +271,8 @@ class Emojify {
         "mechanic-worker-man": "👨‍🔧",
         "scientist-girl": "👩‍🔬",
         "scientist-man": "👨‍🔬",
-        "": "👩‍🎨",
-        "": "👨‍🎨",
+        "artist-girl": "👩‍🎨",
+        "artist-man": "👨‍🎨",
         "": "👩‍🚒",
         "": "👨‍🚒",
         "": "👩‍✈️",

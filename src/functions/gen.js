@@ -24,6 +24,9 @@ gen(body, regex=null) {
 			}
 		}
 	}
+	if (!twemoji) {
+		throw "Emojify requires Twemoji to work. Please contact the developer or check the docs for more informations."
+	}
 	twemoji.parse(body)
 	return body
 }

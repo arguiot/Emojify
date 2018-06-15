@@ -376,7 +376,11 @@ var Emojify = (function() {
         var search = el.querySelector(".search");
 
         var callback = function callback(e) {
-          var regex = new RegExp(e.currentTarget.value, "i");
+          var value = e.currentTarget.value;
+          var array = value.split(" ");
+          var join = "(" + array.join(")(?=.*") + ")";
+          var regex = new RegExp(join, "i");
+          console.log(regex);
           if (e.currentTarget.value == "") {
             el = _this.gen(el);
           } else {

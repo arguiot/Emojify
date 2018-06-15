@@ -2,7 +2,11 @@ addEventListeners(el) {
 	const search = el.querySelector(".search")
 
 	const callback = e => {
-		const regex = new RegExp(e.currentTarget.value, "i")
+		const value = e.currentTarget.value
+		const array = value.split(" ")
+		const join = `(${array.join(")(?=.*")})`
+		const regex = new RegExp(join, "i")
+		console.log(regex)
 		if (e.currentTarget.value == "") {
 			el = this.gen(el)
 		} else {

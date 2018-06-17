@@ -5,6 +5,7 @@ const model = `
   <div class="emojis"></div>
   <div class="menu">
     <div class="people">😀</div>
+	<div class="animals">🐶</div>
   </div>
 </div>
 <style>
@@ -58,7 +59,7 @@ const model = `
 .container .menu {
   width: 50px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
   transform: translate(240px, -300px);

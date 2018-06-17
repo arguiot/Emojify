@@ -288,4 +288,4 @@
 	"glasses": "👓",
 	"sun-glasses": "🕶",
 	"umbrella": "🌂"
-}
+},

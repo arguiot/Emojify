@@ -1,5 +1,6 @@
 createList() {
 	return {
-		//= ../emojis/
+		//= ../emojis/people.js
+		//= ../emojis/animals.js
 	}
 }

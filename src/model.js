@@ -1,5 +1,5 @@
 const model = `
-<div class="container">
+<div class="emojify-container">
   <input type="text" class="search" placeholder="Find your Emoji">
   <lunar-icon icon="search"></lunar-icon>
   <div class="emojis"></div>
@@ -9,14 +9,14 @@ const model = `
   </div>
 </div>
 <style>
-.container {
+.emojify-container {
   width: 300px;
   height: 300px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   background: white;
 }
-.container .search {
+.emojify-container .search {
   width: 70%;
   height: 50px;
   margin: 20px;
@@ -26,13 +26,13 @@ const model = `
   box-sizing: border-box;
   padding: 10px;
 }
-.container lunar-icon {
+.emojify-container lunar-icon {
   position: relative;
   left: -20%;
   font-size: 20px;
   top: 5px;
 }
-.container .emojis {
+.emojify-container .emojis {
   width: 90%;
   height: 70%;
   box-sizing: border-box;
@@ -41,7 +41,7 @@ const model = `
   margin: 0 auto;
   overflow: auto;
 }
-.container .emojis .emoji {
+.emojify-container .emojis .emoji {
   display: inline;
   width: 20px;
   padding: 5px;
@@ -50,13 +50,13 @@ const model = `
   cursor: pointer;
   box-sizing: content-box;
 }
-.container .emojis .emoji:hover {
+.emojify-container .emojis .emoji:hover {
   background: rgba(0, 0, 0, 0.1);
 }
 .container .emojis::-webkit-scrollbar {
   width: 1em;
 }
-.container .menu {
+.emojify-container .menu {
   width: 50px;
   display: flex;
   justify-content: space-evenly;
@@ -67,7 +67,7 @@ const model = `
   padding: 10px;
   height: 100%;
 }
-.container .menu .emoji {
+.emojify-container .menu .emoji {
   display: inline;
   width: 30px;
   padding: 5px;
@@ -76,7 +76,7 @@ const model = `
   cursor: pointer;
   box-sizing: content-box;
 }
-.container .menu .emoji:hover {
+.emojify-container .menu .emoji:hover {
   background: rgba(0, 0, 0, 0.1);
 }
 </style>

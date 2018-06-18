@@ -53,7 +53,7 @@ const model = `
 .emojify-container .emojis .emoji:hover {
   background: rgba(0, 0, 0, 0.1);
 }
-.container .emojis::-webkit-scrollbar {
+.emojify-container .emojis::-webkit-scrollbar {
   width: 1em;
 }
 .emojify-container .menu {

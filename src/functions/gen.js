@@ -40,7 +40,24 @@ gen(body, regex=null) {
 			this.input.value = this.input.value.splice(pos, 0, unicode)
 		})
 	})
+	// Menu events
+	let menu = body.querySelectorAll(".menu > div")
 
+	const menu_new = menu[0].parentNode.cloneNode(true)
+	menu[0].parentNode.parentNode.replaceChild(menu_new, menu[0].parentNode)
+
+	menu = body.querySelectorAll(".menu > div")
+	const titles = body.querySelectorAll(".emojis > h3")
+
+	menu.forEach(e => {
+		e.addEventListener("click", ev => {
+			const target = ev.currentTarget
+			const index = [...target.parentElement.children].indexOf(target)
+			const topPos = titles[index].offsetTop - emojis.offsetTop
+
+			emojis.scrollTop = topPos
+		})
+	})
 
 	return body
 }

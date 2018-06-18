@@ -603,24 +603,6 @@ var Emojify = (function() {
           }
         };
         search.addEventListener("input", callback);
-
-        var menu = el.querySelectorAll(".menu > div");
-
-        var titles = el.querySelectorAll(".emojis > h3");
-        var emojis = el.querySelector(".emojis");
-
-        menu.forEach(function(e) {
-          e.addEventListener("click", function(ev) {
-            var target = ev.currentTarget;
-            var index = []
-              .concat(_toConsumableArray(target.parentElement.children))
-              .indexOf(target);
-
-            var topPos = titles[index].offsetTop - emojis.offsetTop;
-
-            emojis.scrollTop = topPos;
-          });
-        });
       }
     },
     {
@@ -672,6 +654,29 @@ var Emojify = (function() {
             var pos = _this2.input.selectionStart;
 
             _this2.input.value = _this2.input.value.splice(pos, 0, unicode);
+          });
+        });
+        // Menu events
+        var menu = body.querySelectorAll(".menu > div");
+
+        var menu_new = menu[0].parentNode.cloneNode(true);
+        menu[0].parentNode.parentNode.replaceChild(
+          menu_new,
+          menu[0].parentNode
+        );
+
+        menu = body.querySelectorAll(".menu > div");
+        var titles = body.querySelectorAll(".emojis > h3");
+
+        menu.forEach(function(e) {
+          e.addEventListener("click", function(ev) {
+            var target = ev.currentTarget;
+            var index = []
+              .concat(_toConsumableArray(target.parentElement.children))
+              .indexOf(target);
+            var topPos = titles[index].offsetTop - emojis.offsetTop;
+
+            emojis.scrollTop = topPos;
           });
         });
 

@@ -5,12 +5,12 @@ createElement() {
 
 	const html = parser.parseFromString(model, "text/html")
 
-	const body = html.body.querySelector(".container")
+	const body = html.body.querySelector(".emojify-container")
 	const style = html.body.querySelector("style")
 
 	const out = this.gen(body)
 	this.addEventListeners(body)
-	
+
 	out.appendChild(style)
 	return out
 }

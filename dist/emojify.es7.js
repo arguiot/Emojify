@@ -39,7 +39,7 @@ class Emojify {
   }
   createElement() {
     const model = `
-		<div class="container">
+		<div class="emojify-container">
 		  <input type="text" class="search" placeholder="Find your Emoji">
 		  <lunar-icon icon="search"></lunar-icon>
 		  <div class="emojis"></div>
@@ -49,14 +49,14 @@ class Emojify {
 		  </div>
 		</div>
 		<style>
-		.container {
+		.emojify-container {
 		  width: 300px;
 		  height: 300px;
 		  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
 		  border-radius: 5px;
 		  background: white;
 		}
-		.container .search {
+		.emojify-container .search {
 		  width: 70%;
 		  height: 50px;
 		  margin: 20px;
@@ -66,13 +66,13 @@ class Emojify {
 		  box-sizing: border-box;
 		  padding: 10px;
 		}
-		.container lunar-icon {
+		.emojify-container lunar-icon {
 		  position: relative;
 		  left: -20%;
 		  font-size: 20px;
 		  top: 5px;
 		}
-		.container .emojis {
+		.emojify-container .emojis {
 		  width: 90%;
 		  height: 70%;
 		  box-sizing: border-box;
@@ -81,7 +81,7 @@ class Emojify {
 		  margin: 0 auto;
 		  overflow: auto;
 		}
-		.container .emojis .emoji {
+		.emojify-container .emojis .emoji {
 		  display: inline;
 		  width: 20px;
 		  padding: 5px;
@@ -90,13 +90,13 @@ class Emojify {
 		  cursor: pointer;
 		  box-sizing: content-box;
 		}
-		.container .emojis .emoji:hover {
+		.emojify-container .emojis .emoji:hover {
 		  background: rgba(0, 0, 0, 0.1);
 		}
-		.container .emojis::-webkit-scrollbar {
+		.emojify-container .emojis::-webkit-scrollbar {
 		  width: 1em;
 		}
-		.container .menu {
+		.emojify-container .menu {
 		  width: 50px;
 		  display: flex;
 		  justify-content: space-evenly;
@@ -107,7 +107,7 @@ class Emojify {
 		  padding: 10px;
 		  height: 100%;
 		}
-		.container .menu .emoji {
+		.emojify-container .menu .emoji {
 		  display: inline;
 		  width: 30px;
 		  padding: 5px;
@@ -116,7 +116,7 @@ class Emojify {
 		  cursor: pointer;
 		  box-sizing: content-box;
 		}
-		.container .menu .emoji:hover {
+		.emojify-container .menu .emoji:hover {
 		  background: rgba(0, 0, 0, 0.1);
 		}
 		</style>
@@ -126,7 +126,7 @@ class Emojify {
 
     const html = parser.parseFromString(model, "text/html");
 
-    const body = html.body.querySelector(".container");
+    const body = html.body.querySelector(".emojify-container");
     const style = html.body.querySelector("style");
 
     const out = this.gen(body);
@@ -429,68 +429,68 @@ class Emojify {
         umbrella: "🌂"
       },
       "Animals & Nature": {
-        "": "🐶",
-        "": "🐱",
-        "": "🐭",
-        "": "🐹",
-        "": "🐰",
-        "": "🦊",
-        "": "🐻",
-        "": "🐼",
-        "": "🐨",
-        "": "🐯",
-        "": "🦁",
-        "": "🐮",
-        "": "🐷",
-        "": "🐽",
-        "": "🐸",
-        "": "🐵",
-        "": "🙈",
-        "": "🙉",
-        "": "🙊",
-        "": "🐒",
-        "": "🐔",
-        "": "🐧",
-        "": "🐦",
-        "": "🐤",
-        "": "🐣",
-        "": "🐥",
-        "": "🦆",
-        "": "🦅",
-        "": "🦉",
-        "": "🦇",
-        "": "🐺",
-        "": "🐗",
-        "": "🐴",
-        "": "🦄",
-        "": "🐝",
-        "": "🐛",
-        "": "🦋",
-        "": "🐌",
-        "": "🐚",
-        "": "🐞",
-        "": "🐜",
-        "": "🦗",
-        "": "🕷",
-        "": "🕸",
-        "": "🦂",
-        "": "🐢",
-        "": "🐍",
-        "": "🦎",
-        "": "🦖",
-        "": "🦕",
-        "": "🐙",
-        "": "🦑",
-        "": "🦐",
-        "": "🦀",
-        "": "🐡",
-        "": "🐠",
-        "": "🐟",
-        "": "🐬",
-        "": "🐳",
-        "": "🐋",
-        "": "🦈",
-        "": "🐊",
+        "dog-face": "🐶",
+        "cat-face": "🐱",
+        "mouse-face": "🐭",
+        "hamster-face": "🐹",
+        "rabbit-face": "🐰",
+        "fox-face": "🦊",
+        "brown-bear-face": "🐻",
+        "panda-face": "🐼",
+        "koala-facd": "🐨",
+        "tiger-face": "🐯",
+        "lion-face": "🦁",
+        "cow-face": "🐮",
+        "pig-face": "🐷",
+        "pig-nose-snout": "🐽",
+        "frog-face": "🐸",
+        "monkey-face": "🐵",
+        "see-no-evil-monkey-cheeky": "🙈",
+        "hear-no-evil-monkey-kikazaru": "🙉",
+        "speak-no-evil-monkey-kikazaru": "🙊",
+        monkey: "🐒",
+        chicken: "🐔",
+        penguin: "🐧",
+        bird: "🐦",
+        "baby-chicken-face": "🐤",
+        "hatching-baby-chicken": "🐣",
+        "baby-chicken": "🐥",
+        duck: "🦆",
+        eagle: "🦅",
+        owl: "🦉",
+        bat: "🦇",
+        "wolf-face": "🐺",
+        "boar-wild-pig": "🐗",
+        "horse-face": "🐴",
+        "unicorn-face": "🦄",
+        "honey-bee": "🐝",
+        "caterpillar-centipede-bug": "🐛",
+        butterfly: "🦋",
+        snail: "🐌",
+        "sea-shell": "🐚",
+        ladybug: "🐞",
+        ant: "🐜",
+        cricket: "🦗",
+        spider: "🕷",
+        "spider-web": "🕸",
+        scorpion: "🦂",
+        turtle: "🐢",
+        snake: "🐍",
+        lizard: "🦎",
+        "t-rex-dinosaur": "🦖",
+        "diplodocus-brontosaurus-sauropod-dinosaur": "🦕",
+        octopus: "🐙",
+        squid: "🦑",
+        shrimp: "🦐",
+        crab: "🦀",
+        "blow-fish": "🐡",
+        "tropical-fish": "🐠",
+        fish: "🐟",
+        dolphin: "🐬",
+        "spouting-whale": "🐳",
+        whale: "🐋",
+        shark: "🦈",
+        "crododile-alligator": "🐊",
         "": "🐅",
         "": "🐆",
         "": "🦓",

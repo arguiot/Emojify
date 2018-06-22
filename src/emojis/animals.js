@@ -165,4 +165,4 @@
 	"umbrella": "☂️",
 	"beach-waves-sea-ocean": "🌊",
 	"fog-pollution": "🌫"
-}
+},

@@ -6,6 +6,7 @@ const model = `
   <div class="menu">
     <div class="people">😀</div>
 	<div class="animals">🐶</div>
+	<div class="food">🍔</div>
   </div>
 </div>
 <style>
